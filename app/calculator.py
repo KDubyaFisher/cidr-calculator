@@ -34,3 +34,23 @@ def parse_cidr(cidr_input: str) -> int:
 
     validate_cidr(cidr)
     return cidr
+
+def cidr_to_subnet_mask(cidr: int) -> str:
+    """
+    Convert a CIDR prefix length into a dotted-decimal subnet mask.
+
+    Example:
+         24 -> '255.255.255.0'
+    """
+    validate_cidr(cidr)
+
+    # Build a 32-bit binary mask
+    binary_mask = "1" * cidr + "0" * (32 - cidr)
+
+    # Split into 4 octets (8 bits each)
+    octets = [binary_mask[i:i + 8] for i in range(0, 32, 8)]
+
+    # Convert binary octets to decimal
+    decimal_octets = [str(int(octet, 2)) for octet in octets]
+
+    return ".".join(decimal_octets)
