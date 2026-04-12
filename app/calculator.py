@@ -73,3 +73,25 @@ def validate_ip(ip_address: str) -> None:
         octet = int(part)
         if octet < 0 or octet > 255:
             raise ValueError("Each IP octet must be between 0 and 255")
+
+
+def ip_to_int(ip_address: str) -> int:
+    """
+    Convert a dotted-decimal IPv4 address into a 32-bit integer.
+    """
+    validate_ip(ip_address)
+    octets = [int(part) for part in ip_address.split(".")]
+
+    return (
+        (octets[0] << 24)
+        | (octets[1] << 16)
+        | (octets[2] << 8)
+        | octets[3]
+    )
+
+def int_to_ip(value: int) -> str:
+    """
+    Convert a 32-bit integer into a dotted-decimal IPv4 address.
+    """
+
+    return ".".join(str((value >> shift) & 255) for shift in (24, 16,8,0))
