@@ -1,9 +1,26 @@
+from dataclasses import dataclass
 """
 calculator.py
 
 Core IPv4 CIDR parsing and validation logic.
 """
 
+
+@dataclass
+class SubnetInfo:
+    """
+    Represents the full subnet calculation result for an IPv4 address and CIDR.
+    """
+    ip_address: str
+    cidr: int
+    subnet_mask: str
+    wildcard_mask: str
+    network_address: str
+    broadcast_address: str
+    first_usuable_address: str
+    last_usuable_address: str
+    total_addresses: int
+    usable_hosts: int
 
 def validate_cidr(cidr: int) -> None:
     """
