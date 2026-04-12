@@ -71,6 +71,17 @@ def cidr_to_subnet_mask(cidr: int) -> str:
 
     return ".".join(decimal_octets)
 
+def subnet_mask_to_wildcard(mask:str) -> str:
+    """
+    Convert a dotted-decimal subnet mask into a wildcard mask.
+
+    Example:
+         255.255.255.0 -> 0.0.0.255
+    """
+    octets = mask.split(".")
+    wildcard_octets = [str(255 - int(octet)) for octet in octets]
+    return ".".join(wildcard_octets)
+
 def validate_ip(ip_address: str) -> None:
     """
     Validate a dotted-decimal IPv4 address.
