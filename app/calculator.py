@@ -38,7 +38,6 @@ def parse_cidr(cidr_input: str) -> int:
 def cidr_to_subnet_mask(cidr: int) -> str:
     """
     Convert a CIDR prefix length into a dotted-decimal subnet mask.
-
     Example:
          24 -> '255.255.255.0'
     """
@@ -50,7 +49,27 @@ def cidr_to_subnet_mask(cidr: int) -> str:
     # Split into 4 octets (8 bits each)
     octets = [binary_mask[i:i + 8] for i in range(0, 32, 8)]
 
-    # Convert binary octets to decimal
+    # Convert binary octets to
     decimal_octets = [str(int(octet, 2)) for octet in octets]
 
     return ".".join(decimal_octets)
+
+def validate_ip(ip_address: str) -> None:
+    """
+    Validate a dotted-decimal IPv4 address.
+
+    Example valid input:
+        192.168.1.10
+    """
+    parts = ip_address.split(".")
+
+    if len(parts) != 4:
+        raise ValueError("IP address must contain exactly 4 octets.")
+
+    for part in parts:
+        if not part.isdigit():
+            raise ValueError("Each IP octet must be numeric")
+
+        octet = int(part)
+        if octet < 0 or octet > 255:
+            raise ValueError("Each IP octet must be between 0 and 255")
