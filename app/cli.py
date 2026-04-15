@@ -1,8 +1,11 @@
 """
 cli.py
 
-Command-line interface helpers for displaying CIDR calculator results.
+Command-line interface helpers for displaying and running the CIDR calculator.
 """
+
+from app.calculator import calculate_subnet_info, parse_cidr
+
 
 def print_subnet_info(info) -> None:
     """
@@ -20,3 +23,30 @@ def print_subnet_info(info) -> None:
     print(f"Total Addresses   : {info.total_addresses}")
     print(f"Usable Hosts      : {info.usable_hosts}")
     print()
+
+
+def run_cli() -> None:
+    """
+    Run the interactive command-line subnet calculator.
+    """
+    print("CIDR Calculator")
+    print("Enter an IPv4 address and CIDR prefix.")
+    print("Type 'q' at any prompt to quit.\n")
+
+    while True:
+        ip_input = input("Enter IPv4 address: ").strip()
+        if ip_input.lower() == "q":
+            print("Goodbye.")
+            break
+
+        cidr_input = input("Enter CIDR (example: /24 or 24): ").strip()
+        if cidr_input.lower() == "q":
+            print("Goodbye.")
+            break
+
+        try:
+            cidr = parse_cidr(cidr_input)
+            subnet_info = calculate_subnet_info(ip_input, cidr)
+            print_subnet_info(subnet_info)
+        except ValueError as error:
+            print(f"Error: {error}\n")
