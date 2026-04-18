@@ -7,6 +7,7 @@ Unit tests for CIDR calculator core logic.
 import unittest
 
 from app.calculator import (
+    calculate_subnet_info,
     parse_cidr,
     cidr_to_subnet_mask,
     ip_to_int,
@@ -47,6 +48,29 @@ class TestCalculator(unittest.TestCase):
     def test_ip_to_int_invalid_ip(self):
         with self.assertRaises(ValueError):
             ip_to_int("999.999.999.999")
+
+    def test_calculate_subnet_info_for_24(self):
+        result = calculate_subnet_info("192.168.1.10", 24)
+
+        self.assertEqual(result.subnet_mask, "255.255.255.0")
+        self.assertEqual(result.wildcard_mask, "0.0.0.255")
+        self.assertEqual(result.network_address, "192.168.1.0")
+        self.assertEqual(result.broadcast_address, "192.168.1.255")
+        self.assertEqual(result.first_usable_address, "192.168.1.1")
+        self.assertEqual(result.last_usable_address, "192.168.1.254")
+        self.assertEqual(result.total_addresses, 256)
+        self.assertEqual(result.usable_hosts, 254)
+
+    def test_calculate_subnet_info_for_31(self):
+        result = calculate_subnet_info("10.0.0.1", 31)
+
+        self.assertEqual(result.usable_hosts, 2)
+        self.assertEqual(result.first_usable_address, "10.0.0.0")
+        self.assertEqual(result.last_usable_address, "10.0.0.1")
+
+    def test_invalid_ip_raises_error(self):
+        with self.assertRaises(ValueError):
+            calculate_subnet_info("999.168.1.10", 24)
 
 
 
