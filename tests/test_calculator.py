@@ -6,7 +6,12 @@ Unit tests for CIDR calculator core logic.
 
 import unittest
 
-from app.calculator import parse_cidr, cidr_to_subnet_mask
+from app.calculator import (
+    parse_cidr,
+    cidr_to_subnet_mask,
+    ip_to_int,
+    int_to_ip,
+)
 
 class TestCalculator(unittest.TestCase):
 
@@ -32,6 +37,16 @@ class TestCalculator(unittest.TestCase):
 
     def test_cidr_to_subnet_mask_0(self):
         self.assertEqual(cidr_to_subnet_mask(0), "0.0.0.0")
+
+
+    def test_ip_conversion_round_trip(self):
+        ip_address = "192.168.1.10"
+        converted_ip = int_to_ip(ip_to_int(ip_address))
+        self.assertEqual(ip_address, converted_ip)
+
+    def test_ip_to_int_invalid_ip(self):
+        with self.assertRaises(ValueError):
+            ip_to_int("999.999.999.999")
 
 
 
