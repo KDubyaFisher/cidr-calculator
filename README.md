@@ -66,3 +66,12 @@ cidr-calculator/ \
 | \
 |---main.py # Entry point \
 |___README.md 
+
+
+## Future Improvements
+
+- Add IPv6 support
+- Provide a web-based interface (Flask or FastAPI)
+- Add subnetting practice mode for learning
+- Export results to CSV or JSON
+- Package as an installable CLI tool (pip)
