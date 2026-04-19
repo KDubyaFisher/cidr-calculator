@@ -37,3 +37,17 @@ Follow the prompts:
 bash \
 Enter an IPv4 address: 192.168.1.10 \
 Enter CIDR (example: /24 or 24): /24
+
+## Example Output
+
+=== CIDR Calculator Results === \
+IP Address: 192.168.1.10 \
+CIDR Prefix: /24 \
+Subnet Mask: 255.255.255.0 \
+Wildcard Mask: 0.0.0.255 \
+Network Address: 192.168.1.0 \
+Broadcast Address: 192.168.1.255 \
+First Usable IP: 192.168.1.1 \
+Last Usable IP: 192.168.1.254 \
+Total Addresses: 256 \
+Usable Hosts: 254
