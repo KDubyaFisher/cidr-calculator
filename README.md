@@ -75,3 +75,7 @@ cidr-calculator/ \
 - Add subnetting practice mode for learning
 - Export results to CSV or JSON
 - Package as an installable CLI tool (pip)
+
+## Screenshot
+
+![CLI Example](assets/cli-example.png)
