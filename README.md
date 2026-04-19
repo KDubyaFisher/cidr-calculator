@@ -17,3 +17,23 @@ A command-line tool for calculating IPv4 subnet information from an IP address a
 - Python 3
 - Standard Library ('dataclasses', 'unittest')
 
+## Installation 
+
+Clone the repository:
+
+bash \
+git clone https://github.com/KDubyaFisher/cidr-calculator.git \
+cd cidr-calculator
+
+## Usage
+
+Run the application:
+
+bash \
+python3 main.py
+
+Follow the prompts:
+
+bash \
+Enter an IPv4 address: 192.168.1.10 \
+Enter CIDR (example: /24 or 24): /24
