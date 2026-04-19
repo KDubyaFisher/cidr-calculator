@@ -51,3 +51,18 @@ First Usable IP: 192.168.1.1 \
 Last Usable IP: 192.168.1.254 \
 Total Addresses: 256 \
 Usable Hosts: 254
+
+
+## Project Structure
+
+cidr-calculator/ \
+| \
+|---app/ \
+|  |----caclulator.py # Core subnet logic \
+|  |____cli.py # CLI interface \
+| \
+|---tests/ \
+|  |____test_calculator.py # Unit tests \
+| \
+|---main.py # Entry point \
+|___README.md 
