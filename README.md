@@ -51,16 +51,19 @@ cidr-calculator/
 git clone https://github.com/KDubyaFisher/cidr-calculator.git
 cd cidr-calculator
 ```
+
 ### Run the Application
 ```bash
 python3 main.py
 ```
 
+
 ### Example Usage
-```bash
+```text
 Enter an IPv4 address: 192.168.1.10
 Enter CIDR (example: /24 or 24): /24
 ```
+
 ### Example Output
 ```text
 === CIDR Calculator Results ===
@@ -75,10 +78,29 @@ Last Usable IP:     192.168.1.254
 Total Addresses:    256
 Usable Hosts:       254
 ```
+
 ### Running Tests
 ```bash
 python3 -m unittest discover tests
 ```
+
+## Windows Executable
+
+This project can be packaged as a standalone Windows executable using PyInstaller.
+
+### Build the Executable
+
+```powershell
+py -m pip install pyinstaller
+py -m PyInstaller --onefile --name cidr-calculator main.py
+```
+
+### Run the Executable
+```powershell
+.\dist\cidr-calculator.exe
+```
+
+No Python installation is required to run the packaged executable on the target machine.
 
 ## What This Project Demonstrates
 
