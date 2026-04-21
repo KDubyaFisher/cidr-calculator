@@ -50,9 +50,12 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def run_cli() -> None:
+def run_interactive_cli() -> int:
     """
     Run the interactive command-line subnet calculator.
+
+    Returns:
+        int: Process exit code.
     """
     print("CIDR Calculator")
     print("Enter an IPv4 address and CIDR prefix.")
@@ -62,12 +65,12 @@ def run_cli() -> None:
         ip_input = input("Enter IPv4 address: ").strip()
         if ip_input.lower() == "q":
             print("Goodbye.")
-            break
+            return 0
 
         cidr_input = input("Enter CIDR (example: /24 or 24): ").strip()
         if cidr_input.lower() == "q":
             print("Goodbye.")
-            break
+            return 0
 
         try:
             cidr = parse_cidr(cidr_input)
