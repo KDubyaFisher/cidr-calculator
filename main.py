@@ -4,8 +4,8 @@ main.py
 Application entry point for the CIDR calculator.
 """
 
-from app.cli import run_cli
+from app.cli import run
 
 
 if __name__ == "__main__":
-    run_cli()
+    raise SystemExit(run())
