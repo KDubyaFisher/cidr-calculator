@@ -78,3 +78,24 @@ def run_interactive_cli() -> int:
             print_subnet_info(subnet_info)
         except ValueError as error:
             print(f"Error: {error}\n")
+
+
+def run_non_interactive(ip_input: str, cidr_input: str) -> int:
+    """
+    Run the CIDR calculator in non-interactive mode.
+    
+    Args:
+        ip_input: The IPv4 address supplied by the user
+        cidr_input: The CIDR prefix supplied by the user
+
+    Returns:
+        int: Process exit code.        
+    """
+    try:
+        cidr = parse_cidr(cidr_input)
+        subnet_info = calculate_subnet_info(ip_input, cidr)
+        print_subnet_info(subnet_info)
+        return 0
+    except ValueError as error:
+        print(f"Error: {error}")
+        return 1
