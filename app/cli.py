@@ -100,7 +100,7 @@ def run_non_interactive(ip_input: str, cidr_input: str) -> int:
         print(f"Error: {error}")
         return 1
     
-    def run() -> int:
+def run() -> int:
         """
         Main CLI entry point. 
 
