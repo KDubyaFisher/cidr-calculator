@@ -4,6 +4,10 @@ cli.py
 Command-line interface helpers for displaying and running the CIDR calculator.
 """
 
+from __future__ import annotations
+
+import argparse
+
 from app.calculator import calculate_subnet_info, parse_cidr
 
 
@@ -23,6 +27,27 @@ def print_subnet_info(info) -> None:
     print(f"Total Addresses   : {info.total_addresses}")
     print(f"Usable Hosts      : {info.usable_hosts}")
     print()
+
+
+def build_parser() -> argparse.ArgumentParser:
+    """ 
+    Build and return the argument parser for the CIDR calculator.
+    
+    If both --ip and --cidr are provided, the calculator runs in non-interactive mode. If neither is provided, the calculator falls back to interactive mode.
+    """
+
+    parser = argparse.ArgumentParser(description="Calculate IPv4 subnet details from an IP address and CIDR prefix.")
+
+    parser.add_argument(
+        "--ip",
+        help="IPv4 address to calculate against (example: 192.168.1.10).",
+    )
+    parser.add_argument(
+        "--cidr",
+        help="CIDR prefix length (example: /24 or 24).",
+    )
+
+    return parser
 
 
 def run_cli() -> None:
