@@ -99,3 +99,29 @@ def run_non_interactive(ip_input: str, cidr_input: str) -> int:
     except ValueError as error:
         print(f"Error: {error}")
         return 1
+    
+    def run() -> int:
+        """
+        Main CLI entry point. 
+
+        Behavior:
+        - If both --ip and --cidr are provided, runs in non-interactive mode.
+        - If neither is provided, runs in interactive mode.
+        - If only one of --ip or --cidr is provided, prints an error and exits.
+
+        Returns:
+            int: Process exit code.
+        """
+        parser = build_parser()
+        args = parser.parse_args()
+
+        ip_provided = args.ip is not None
+        cidr_provided = args.cidr is not None
+
+        if ip_provided and cidr_provided:
+            return run_non_interactive(args.ip, args.cidr)
+        if not ip_provided and not cidr_provided:
+            return run_interactive_cli()
+        
+        parser.error("Both --ip and --cidr must be provided together for non-interactive mode, or neither for interactive mode.")
+        return 2
