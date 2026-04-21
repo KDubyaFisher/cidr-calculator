@@ -58,7 +58,7 @@ Usable Hosts: 254
 cidr-calculator/ \
 | \
 |---app/ \
-|  |----caclulator.py # Core subnet logic \
+|  |----calculator.py # Core subnet logic \
 |  |____cli.py # CLI interface \
 | \
 |---tests/ \
