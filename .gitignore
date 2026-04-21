@@ -20,7 +20,12 @@ ENV/
 *.egg-info/
 dist/
 build/
+*.spec
 
 # Coverage reports
 htmlcov/
 .coverage
+
+# OS files
+.DS_Store
+Thumbs.db
